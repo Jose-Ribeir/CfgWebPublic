@@ -5,8 +5,7 @@ var logger = require('morgan');
 const bodyParser = require('body-parser')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const users = require('./routes/user')
-const stores = require('./routes/store')
+
 var app = express();
 
 app.use(logger('dev'));
@@ -21,6 +20,10 @@ app.use(
     })
 )
 
+const users = require('./routes/user')
+const stores = require('./routes/store')
+const cfg = require('./routes/cfg')
+
 app.use('/', indexRouter);
 app.use('/users1', usersRouter);
 app.get('/users', users.getUsers)
@@ -28,6 +31,9 @@ app.get('/users/:id', users.getUserById)
 app.post('/users', users.createUser)
 app.put('/users/:id', users.updateUser)
 app.delete('/users/:id', users.deleteUser)
+//cfg
+app.get('/cfg', cfg.getCfg)
+app.get('/cfg/:id', cfg.getCfgById)
 
 app.get('/stores', stores.getStores)
 
