@@ -38,7 +38,7 @@ window.initMap = initMap;
 
 
 async function getData(){
-    var targetUrl = 'https://ulide-party-api.herokuapp.com/api/spots'
+    var targetUrl = 'https://cfgandshare-api.herokuapp.com/store'
 
 
     const response = await fetch(targetUrl)
