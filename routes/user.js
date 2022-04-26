@@ -40,10 +40,9 @@ const getUserById = (request, response) => {
 }
 
 const getLogin = (request, response) => {
-  const mail = parseInt(request.params.name)
-  const pass = parseInt(request.params.arguments)
+  const users = request.body
 
-  client.query('SELECT * FROM person WHERE person_email = $1 && person_password = $2', [mail.toString() , pass.toString()], (error, results) => {
+  client.query('SELECT * FROM person WHERE person_email = $1 and person_password = $2', [users.person_name.toString() ,md5(users.person_password.toString())], (error, results) => {
     if (error) {
       throw error
     }
@@ -95,4 +94,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  getLogin
 }

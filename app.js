@@ -29,6 +29,9 @@ app.use('/users1', usersRouter);
 app.get('/users', users.getUsers)
 app.get('/users/:id', users.getUserById)
 app.post('/users', users.createUser)
+app.post('/users', users.g)
+
+
 app.put('/users/:id', users.updateUser)
 app.delete('/users/:id', users.deleteUser)
 //cfg
