@@ -46,7 +46,7 @@ const getLogin = (request, response) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`User encontrado`)
+    //response.status(201).send(`User encontrado`)
     response.status(200).json(results.rows)
 
   })
