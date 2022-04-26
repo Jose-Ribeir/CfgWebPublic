@@ -13,6 +13,7 @@
 const client = require('../models/connection.js')
 const express = require('express');
 const {log} = require("debug");
+const {md5} = require("pg/lib/utils");
 const app = express();
 
 
@@ -38,10 +39,22 @@ const getUserById = (request, response) => {
   })
 }
 
+const getLogin = (request, response) => {
+  const mail = parseInt(request.params.name)
+  const pass = parseInt(request.params.arguments)
+
+  client.query('SELECT * FROM person WHERE person_email = $1 && person_password = $2', [mail.toString() , pass.toString()], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 const createUser = (request, response) => {
   const users = request.body
 
-  client.query('INSERT INTO person (person_name, person_email) VALUES ($1, $2)', [users.person_name.toString(), users.person_email.toString()], (error, results) => {
+  client.query('INSERT INTO person (person_name, person_email, person_password) VALUES ($1, $2, $3)', [users.person_name.toString(), users.person_email.toString(), md5(users.person_password.toString())], (error, results) => {
     if (error) {
       throw error
     }
