@@ -44,11 +44,14 @@ const getLogin = (request, response) => {
 
   client.query('SELECT * FROM person WHERE person_email = $1 and person_password = $2', [users.person_email.toString() ,md5(users.person_password.toString())], (error, results) => {
     if (error) {
-      res.status(404).send('Not found')
+
       throw error
 
-    }else
-      response.status(200).json(results.rows)
+    }
+    if (results.rows.length < 1)
+      res.status(404).send('Not found')
+
+    response.status(200).json(results.rows)
 
     //response.status(201).send('User found')
 
