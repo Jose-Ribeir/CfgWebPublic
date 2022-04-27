@@ -49,7 +49,7 @@ const getLogin = (request, response) => {
 
     }
     if (results.rows.length < 1)
-      res.status(404).send('Not found')
+      response.status(404).send('Not found')
 
     response.status(200).json(results.rows)
 
