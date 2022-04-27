@@ -44,9 +44,7 @@ const getLogin = (request, response) => {
 
   client.query('SELECT * FROM person WHERE person_email = $1 and person_password = $2', [users.person_email.toString() ,md5(users.person_password.toString())], (error, results) => {
     if (error) {
-
       throw error
-
     }
     if (results.rows.length < 1)
       response.status(404).send('Wrong email or password '+ " or " +'  Not found')
