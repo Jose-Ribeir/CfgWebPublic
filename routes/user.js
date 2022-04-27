@@ -44,10 +44,11 @@ const getLogin = (request, response) => {
 
   client.query('SELECT * FROM person WHERE person_email = $1 and person_password = $2', [users.person_email.toString() ,md5(users.person_password.toString())], (error, results) => {
     if (error) {
-      throw error
       response.send("Wrong pass or email")
+      throw error
+
     }
-    //response.status(201).send(`User encontrado`)
+    response.status(201).send(`User found`)
     response.status(200).json(results.rows)
 
   })
