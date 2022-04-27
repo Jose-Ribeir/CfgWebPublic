@@ -49,7 +49,7 @@ const getLogin = (request, response) => {
 
     }
     if (results.rows.length < 1)
-      response.status(404).send('Wrong email or password '+ "or" +'  Not found')
+      response.status(404).send('Wrong email or password '+ " or " +'  Not found')
 
     response.status(200).json(results.rows)
 
