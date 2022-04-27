@@ -47,9 +47,10 @@ const getLogin = (request, response) => {
       res.status(404).send('Not found')
       throw error
 
-    }
+    }else
+      response.status(200).json(results.rows)
+
     //response.status(201).send('User found')
-    response.status(200).json(results.rows)
 
   })
 }
