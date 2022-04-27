@@ -125,27 +125,27 @@ async function initMap() {
             map,
             center: { lat: json[i].st_x, lng: json[i].st_y },
             // center: citymap.lisboa.center,
-            radius: Math.sqrt(json[i].sp_views) * 10,
+            radius: Math.sqrt(json[i].st_x)*10,
         });
     }
 }
 
 async function getData(){
-    var targetUrl = 'https://ulide-party-api.herokuapp.com/api/spots'
-
-
-    const response = await fetch(targetUrl)
-    const data = await response.json()
-    console.log(data)
-    return data
-
-    // var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-    //     targetUrl = 'https://ulide-party-api.herokuapp.com/api/spots'
+    // var targetUrl = 'https://cfgandshare-api.herokuapp.com/stores'
     //
-    // const response = await fetch(
-    //     proxyUrl + targetUrl)
+    //
+    // const response = await fetch(targetUrl)
     // const data = await response.json()
+    // console.log(data)
     // return data
+
+    var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+        targetUrl = 'https://cfgandshare-api.herokuapp.com/stores'
+
+    const response = await fetch(
+        proxyUrl + targetUrl)
+    const data = await response.json()
+    return data
 
 }
 

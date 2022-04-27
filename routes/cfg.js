@@ -3,7 +3,6 @@ const express = require('express');
 const {log} = require("debug");
 const app = express();
 
-
 client.connect();
 
 const getCfg = (request, response) => {
@@ -13,12 +12,11 @@ const getCfg = (request, response) => {
         }
         response.status(200).json(results.rows)
     })
-
 }
+
 
 const getCfgById = (request, response) => {
     const id = parseInt(request.params.id)
-
     client.query('SELECT * FROM cfg WHERE cfg_id = $1', [id], (error, results) => {
         if (error) {
             throw error
